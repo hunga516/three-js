@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
@@ -16,11 +16,30 @@ const ThreeScene: React.FC = () => {
             containerRef.current?.appendChild(renderer.domElement);
             camera.position.z = 5;
 
-            // Thêm khối cube
-            const geometry = new THREE.BoxGeometry();
-            const material = new THREE.MeshBasicMaterial({ color: 0x0000FF });
-            const cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
+            // Tạo hình ngôi sao
+            const starShape = new THREE.Shape();
+            const outerRadius = 1;
+            const innerRadius = 0.5;
+            const numPoints = 5;
+
+            for (let i = 0; i < numPoints * 2; i++) {
+                const angle = (i * Math.PI) / numPoints;
+                const radius = i % 2 === 0 ? outerRadius : innerRadius;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+
+                if (i === 0) {
+                    starShape.moveTo(x, y);
+                } else {
+                    starShape.lineTo(x, y);
+                }
+            }
+            starShape.closePath();
+
+            const geometry = new THREE.ShapeGeometry(starShape);
+            const material = new THREE.MeshBasicMaterial({ color: 0xFFD700, side: THREE.DoubleSide });
+            const star = new THREE.Mesh(geometry, material);
+            scene.add(star);
 
             // Thêm OrbitControls để điều khiển camera
             const controls = new OrbitControls(camera, renderer.domElement);
