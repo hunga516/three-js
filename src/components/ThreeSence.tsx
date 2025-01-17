@@ -50,7 +50,6 @@ const ThreeScene: React.FC = () => {
                 requestAnimationFrame(renderScene);
             };
 
-            // Bắt đầu vòng lặp render
             renderScene();
 
             // Xử lý resize cửa sổ
