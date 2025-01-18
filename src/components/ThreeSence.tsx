@@ -1,4 +1,4 @@
-"use client";
+"use client"; // if component use client mounted in route => route will force to  client component
 
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
