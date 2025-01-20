@@ -14,7 +14,7 @@ const ThreeScene: React.FC = () => {
             const renderer = new THREE.WebGLRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
             containerRef.current?.appendChild(renderer.domElement);
-            camera.position.z = 5;
+            camera.position.z = 10;
 
             // Tạo hình ngôi sao
             const starShape = new THREE.Shape();
